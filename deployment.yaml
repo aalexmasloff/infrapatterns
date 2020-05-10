@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: homework-deployment
+spec:
+    replicas: 2
+    selector:
+       matchLabels:
+          app: homework-app
+    template:
+       metadata:
+          labels:
+             app: homework-app
+       spec:
+          containers:
+          - name: homework
+            image: alexmasloff/usersapi:v1
+            env:
+               - name: DATABASE_URI
+                 value: postgres
+               - name: POSTGRES_DB
+                 value: myapp
+               - name: POSTGRES_USER
+                 value: myuser
+               - name: POSTGRES_PASSWORD
+                 value: passwd  
+            ports:
+              - name: web 
+                containerPort: 8000
+            livenessProbe:
+               httpGet:
+                  port: 8000
+                  path: /health
+               initialDelaySeconds: 10
+               periodSeconds: 5
+               timeoutSeconds: 2
+            readinessProbe:
+               httpGet:
+                  port: 8000
+                  path: /health
+               initialDelaySeconds: 10
+               periodSeconds: 5
