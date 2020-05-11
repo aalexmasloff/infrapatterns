@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "1e7bd432-4aaf-4b99-8a7c-296e63935f9a",
+		"name": "OTUS Homework. Test users endpoint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49d47fa6-8f29-4574-ab16-4c2dcbcd6be8",
+						"exec": [
+							"var response = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"userId\", response.id);",
+							"pm.collectionVariables.set(\"responseBody\", response);",
+							"",
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Host",
+						"value": "{{host}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"johndoe\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"bestjohn@doe.com\",\r\n  \"phone\": \"+71002003040\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "120baa14-32ad-410c-b5e5-85da9858d4cf",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Username should be updated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.username).to.eql(\"updated\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "58e2e9c1-e37c-4517-a7c5-181f164d5ed7",
+						"exec": [
+							"// var body = pm.collectionVariables.get(\"responseBody\");",
+							"// console.log(\"bodu=\", body);",
+							"// pm.collectionVariables.set(\"requestBody\", body);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Host",
+						"type": "text",
+						"value": "{{host}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{userId}},\r\n  \"username\": \"updated\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"bestjohn@doe.com\",\r\n  \"phone\": \"+71002003040\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "176a4d35-19ca-4b2e-ab57-408dbc5a99c4",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"type": "text",
+						"value": "{{host}}"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5833152-c432-4295-8792-4c137fdedcee",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Host",
+						"type": "text",
+						"value": "{{host}}"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get removed user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6367daf-2926-4038-9c70-919587ffff83",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"type": "text",
+						"value": "{{host}}"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db1aaa3d-240d-4755-91ab-4125f7f950b5",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"value": "{{host}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cc8b85ac-e791-441e-9184-cbfd9caa9142",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5eec6fc0-4ca7-4b8c-b7df-f138838ff4eb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a76d8c9b-00d0-44b5-aae9-e0ec2d167028",
+			"key": "baseUrl",
+			"value": "192.168.99.101:80",
+			"type": "string"
+		},
+		{
+			"id": "6adde75a-a4c8-49db-8443-4e300a1356b3",
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "63bfc066-f430-47a7-8a57-147d7e63df87",
+			"key": "host",
+			"value": "arch.homework",
+			"type": "string"
+		},
+		{
+			"id": "ef6a3c41-0559-4d81-9149-88d318aa36f2",
+			"key": "responseBody",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "6a7ea79e-fce0-4930-ae13-69074e6813df",
+			"key": "requestBody",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

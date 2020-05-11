@@ -14,3 +14,4 @@ metadata:
 type: Opaque
 data:
   POSTGRES_PASSWORD: cGFzc3dk
+  POSTGRES_CONSTR: cG9zdGdyZXNxbDovL215dXNlcjpwYXNzd2RAcG9zdGdyZXMvbXlhcHA=
