@@ -7,12 +7,10 @@ spec:
     metadata:
       name: homework-initdb
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
       containers:
       - name: post-install-job
         env:
-          # - name: POSTGRES_CONSTR
-          #   value: "postgresql://myuser:passwd@postgres/myapp"
         - name: POSTGRES_CONSTR
           valueFrom:
             secretKeyRef:
@@ -40,4 +38,4 @@ spec:
               ALTER TABLE public.users OWNER to myuser;
 
             EOF
-  backoffLimit: 2
+  backoffLimit: 3

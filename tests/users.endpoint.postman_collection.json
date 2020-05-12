@@ -309,31 +309,31 @@
 	],
 	"variable": [
 		{
-			"id": "a76d8c9b-00d0-44b5-aae9-e0ec2d167028",
+			"id": "39d00275-810c-4d9c-85c6-069ca4011d07",
 			"key": "baseUrl",
-			"value": "192.168.99.101:80",
+			"value": "arch.homework",
 			"type": "string"
 		},
 		{
-			"id": "6adde75a-a4c8-49db-8443-4e300a1356b3",
+			"id": "92851ea7-5881-412c-adbe-0ddd70a16bec",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "63bfc066-f430-47a7-8a57-147d7e63df87",
+			"id": "2ae91ffb-8112-4aaf-b200-90df1f0ad200",
 			"key": "host",
 			"value": "arch.homework",
 			"type": "string"
 		},
 		{
-			"id": "ef6a3c41-0559-4d81-9149-88d318aa36f2",
+			"id": "2cee7918-8155-48c2-9080-535fe10ad228",
 			"key": "responseBody",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "6a7ea79e-fce0-4930-ae13-69074e6813df",
+			"id": "ff4c4325-65d1-455d-94db-bea825dd4926",
 			"key": "requestBody",
 			"value": "",
 			"type": "string"
